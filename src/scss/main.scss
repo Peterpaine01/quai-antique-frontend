@@ -1,0 +1,154 @@
+@import "custom";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+// ---------- HOME ----------
+
+.hero-scene {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: center center url(../../images/FondHeroScene.jpg);
+    background-size: cover;
+    filter: brightness(0.3);
+  }
+
+  * {
+    //Positionner les éléments devant le ::before
+    position: relative;
+  }
+
+  .hero-scene-content {
+    height: 300px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+// ---------- GALERY ----------
+
+.image-card {
+  position: relative;
+  &:hover {
+    .titre-image {
+      opacity: 1;
+    }
+    img {
+      filter: brightness(0.3);
+    }
+    .action-image-buttons {
+      opacity: 1;
+    }
+  }
+
+  .action-image-buttons {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: calc(100% - 40px);
+    padding: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .titre-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+}
+// .image-card {
+//   position: relative;
+//   &:hover {
+//     .titre-image {
+//       opacity: 1;
+//     }
+//     img {
+//       filter: brightness(0.3);
+//     }
+//   }
+
+//   img {
+//     transition: all 0.3s;
+//   }
+
+//   .titre-image {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     opacity: 0;
+//     transition: all 0.3s;
+//   }
+// }
+
+// ---------- FORM ----------
+
+.form-label {
+  color: $primary;
+}
+
+// ---------- BOOKING ----------
+
+.allreservations {
+  a {
+    display: block;
+    color: $black;
+    padding: 10px;
+  }
+}
+
+// ---------- NAVBAR ----------
+
+.navbar,
+.offcanvas {
+  z-index: 1055 !important; /* plus haut que la navbar Bootstrap par défaut */
+}
+
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+.social-icon {
+  height: 45px;
+  filter: brightness(0) invert(1);
+}
+
+// ---------- MASONRY ----------
+
+.grid {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.grid-item {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid-item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-item {
+    width: 33.3333%;
+  }
+}

@@ -1,62 +1,60 @@
 <div class="hero-scene text-center text-white">
   <div class="hero-scene-content">
-    <h1>Ma réservation</h1>
+    <h1>Réserver une table</h1>
   </div>
 </div>
 
 <div class="container">
   <form>
     <div class="mb-3">
-      <label for="NomInput" class="form-label">Nom</label>
+      <label for="nom" class="form-label">Nom</label>
       <input
         disabled
         type="text"
         class="form-control"
-        id="NomInput"
+        id="nom"
         placeholder="Votre nom"
         value="John"
-        name="Nom"
+        name="nom"
       />
     </div>
     <div class="mb-3">
-      <label for="PrenomInput" class="form-label">Prénom</label>
+      <label for="prenom" class="form-label">Prénom</label>
       <input
         disabled
         type="text"
         class="form-control"
-        id="PrenomInput"
+        id="prenom"
         placeholder="Votre prénom"
         value="Doe"
-        name="Prenom"
+        name="prenom"
       />
     </div>
     <div class="mb-3">
-      <label for="AllergieInput" class="form-label">Allergies</label>
+      <label for="allergie" class="form-label">Allergies</label>
       <input
         type="text"
         class="form-control"
-        id="AllergieInput"
+        id="allergie"
         placeholder="Vos allergies (fruits de mer, arachides..)"
-        value="Cacahouetes"
-        name="Allergies"
+        value="Cacahuettes"
+        name="allergie"
       />
     </div>
     <div class="mb-3">
-      <label for="NbConvivesInput" class="form-label"
-        >Nombres de convives habituel</label
-      >
+      <label for="nbConvives" class="form-label">Nombres de convives</label>
       <input
         type="number"
         class="form-control"
-        id="NbConvivesInput"
-        placeholder="Combien vous êtes habituellement ?"
+        id="nbConvives"
+        placeholder="Combien serez-vous à table ?"
         value="4"
-        name="NbConvives"
+        name="nbConvives"
       />
     </div>
     <div class="mb-3">
-      <label for="DateInput" class="form-label">Date</label>
-      <input type="date" class="form-control" id="DateInput" name="Date" />
+      <label for="date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="date" name="date" />
     </div>
     <div class="mb-3">
       <div class="form-check">
@@ -92,8 +90,12 @@
       </select>
     </div>
     <div class="text-center">
-      <button type="submit" class="btn btn-primary">Réserver</button>
-      <button type="button" class="btn btn-danger">Annuler</button>
+      <button type="button" class="btn btn-secondary text-white rounded-pill">
+        Annuler
+      </button>
+      <button type="submit" class="btn btn-primary text-white rounded-pill">
+        Réserver
+      </button>
     </div>
   </form>
 </div>

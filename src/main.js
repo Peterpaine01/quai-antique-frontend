@@ -13,10 +13,12 @@ export function afterPageLoad() {
   }
 }
 
-function signout() {
-  console.log("signout function")
-  eraseCookie(tokenCookieName)
+const tokenCookieName = "accesstoken"
+const RoleCookieName = "role"
 
+function signout() {
+  eraseCookie(tokenCookieName)
+  eraseCookie(RoleCookieName)
   window.location.reload()
 }
 
@@ -43,25 +45,19 @@ export function getCookie(name) {
 
 function eraseCookie(name) {
   const pathSegments = window.location.pathname.split("/").filter(Boolean)
-  console.log("eraseCookie function")
 
-  // Commence par effacer sur le chemin racine "/"
   const pathsToTry = ["/"]
 
-  // Ajoute tous les chemins intermédiaires (ex: /connexion, /connexion/souspage)
   let currentPath = ""
   for (const segment of pathSegments) {
     currentPath += `/${segment}`
     pathsToTry.push(currentPath)
   }
 
-  // Efface le cookie sur tous les chemins possibles
   pathsToTry.forEach((path) => {
     document.cookie = `${name}=; Path=${path}; Expires=Thu, 01 Jan 1970 00:00:00 GMT;`
   })
 }
-
-const tokenCookieName = "accesstoken"
 
 export function setToken(token) {
   setCookie(tokenCookieName, token, 7)
@@ -79,8 +75,39 @@ export function isConnected() {
   }
 }
 
-const RoleCookieName = "role"
-
+// Handle role
 export function getRole() {
   return getCookie(RoleCookieName)
+}
+
+export function showAndHideElementsForRoles() {
+  const userConnected = isConnected()
+  const role = getRole()
+
+  let allElementsToEdit = document.querySelectorAll("[data-show]")
+
+  allElementsToEdit.forEach((element) => {
+    switch (element.dataset.show) {
+      case "disconnected":
+        if (userConnected) {
+          element.classList.add("d-none")
+        }
+        break
+      case "connected":
+        if (!userConnected) {
+          element.classList.add("d-none")
+        }
+        break
+      case "admin":
+        if (!userConnected || role != "admin") {
+          element.classList.add("d-none")
+        }
+        break
+      case "client":
+        if (!userConnected || role != "client") {
+          element.classList.add("d-none")
+        }
+        break
+    }
+  })
 }

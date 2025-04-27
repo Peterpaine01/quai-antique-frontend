@@ -1,7 +1,7 @@
 import Route from "./Route.js"
 import { allRoutes, websiteName } from "./allRoutes.js"
 import { initMasonry } from "../utils/initMasonry.js"
-import { afterPageLoad } from "../main.js"
+import { afterPageLoad, showAndHideElementsForRoles } from "../main.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html")
 
@@ -61,7 +61,7 @@ const loadPageIntoApp = async () => {
   }
 
   document.title = `${currentRoute.title} - ${websiteName}`
-
+  showAndHideElementsForRoles()
   afterPageLoad()
 }
 

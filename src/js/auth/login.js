@@ -1,4 +1,4 @@
-import { login } from "../services/authService"
+import { login } from "../../services/authService"
 
 document
   .getElementById("login-form")

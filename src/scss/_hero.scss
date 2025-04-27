@@ -1,0 +1,33 @@
+// ---------- HOME ----------
+
+.hero-scene {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: center center url(../../images/FondHeroScene.jpg);
+    background-size: cover;
+    filter: brightness(0.3);
+  }
+
+  * {
+    //Positionner les éléments devant le ::before
+    position: relative;
+  }
+
+  .hero-scene-content {
+    height: 300px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.hero-extended {
+  min-height: 100vh;
+}

@@ -1,0 +1,15 @@
+// ---------- NAVBAR ----------
+
+.navbar,
+.offcanvas {
+  z-index: 1055 !important; /* plus haut que la navbar Bootstrap par défaut */
+}
+
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+.social-icon {
+  height: 45px;
+  filter: brightness(0) invert(1);
+}

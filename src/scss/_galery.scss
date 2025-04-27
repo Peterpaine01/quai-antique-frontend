@@ -1,0 +1,88 @@
+// ---------- GALERY ----------
+
+.image-card {
+  position: relative;
+  &:hover {
+    .titre-image {
+      opacity: 1;
+    }
+    img {
+      filter: brightness(0.3);
+    }
+    .action-image-buttons {
+      opacity: 1;
+    }
+  }
+
+  .action-image-buttons {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: calc(100% - 40px);
+    padding: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .titre-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+}
+// .image-card {
+//   position: relative;
+//   &:hover {
+//     .titre-image {
+//       opacity: 1;
+//     }
+//     img {
+//       filter: brightness(0.3);
+//     }
+//   }
+
+//   img {
+//     transition: all 0.3s;
+//   }
+
+//   .titre-image {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     opacity: 0;
+//     transition: all 0.3s;
+//   }
+// }
+
+// ---------- MASONRY ----------
+
+.grid {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.grid-item {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid-item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-item {
+    width: 33.3333%;
+  }
+}

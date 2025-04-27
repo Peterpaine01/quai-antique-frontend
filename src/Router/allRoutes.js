@@ -16,7 +16,7 @@ export const allRoutes = [
     "/pages/auth/signup.html",
     "/js/auth/signup.js"
   ),
-  new Route("/compte", "Compte", "/pages/auth/account.html"),
+  new Route("/compte", "Mon Compte", "/pages/auth/account.html"),
   new Route(
     "/modifier-mot-de-passe",
     "Modifier mot de passe",

@@ -2,44 +2,85 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "./scss/main.scss"
 import "./Router/Router.js"
-import Masonry from "masonry-layout"
-import imagesLoaded from "imagesloaded"
 
-// galery masonry
-window.addEventListener("DOMContentLoaded", () => {
-  const grids = document.querySelectorAll(".grid")
-  grids.forEach((grid) => {
-    imagesLoaded(grid, function () {
-      console.log("Masonry lancé")
-      new Masonry(grid, {
-        itemSelector: ".grid-item",
-        percentPosition: true,
-      })
+export function afterPageLoad() {
+  const btnSignout = document.getElementById("btn-signout")
+  if (btnSignout) {
+    btnSignout.addEventListener("click", (e) => {
+      e.preventDefault()
+      signout()
     })
+  }
+}
+
+function signout() {
+  console.log("signout function")
+  eraseCookie(tokenCookieName)
+
+  window.location.reload()
+}
+
+export function setCookie(name, value, days) {
+  let expires = ""
+  if (days) {
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    expires = "; expires=" + date.toUTCString()
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/"
+}
+
+export function getCookie(name) {
+  const nameEQ = name + "="
+  const ca = document.cookie.split(";")
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i]
+    while (c.charAt(0) == " ") c = c.substring(1, c.length)
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+  }
+  return null
+}
+
+function eraseCookie(name) {
+  const pathSegments = window.location.pathname.split("/").filter(Boolean)
+  console.log("eraseCookie function")
+
+  // Commence par effacer sur le chemin racine "/"
+  const pathsToTry = ["/"]
+
+  // Ajoute tous les chemins intermédiaires (ex: /connexion, /connexion/souspage)
+  let currentPath = ""
+  for (const segment of pathSegments) {
+    currentPath += `/${segment}`
+    pathsToTry.push(currentPath)
+  }
+
+  // Efface le cookie sur tous les chemins possibles
+  pathsToTry.forEach((path) => {
+    document.cookie = `${name}=; Path=${path}; Expires=Thu, 01 Jan 1970 00:00:00 GMT;`
   })
-})
+}
 
-// login
-// document
-//   .getElementById("login-form")
-//   .addEventListener("submit", async (event) => {
-//     event.preventDefault()
+const tokenCookieName = "accesstoken"
 
-//     const email = document.getElementById("email").value
-//     const password = document.getElementById("password").value
+export function setToken(token) {
+  setCookie(tokenCookieName, token, 7)
+}
 
-//     try {
-//       const data = await login(email, password)
-//       console.log("data.apiToken", data.apiToken)
+export function getToken() {
+  return getCookie(tokenCookieName)
+}
 
-//       if (data && data.apiToken) {
-//         // Si la connexion est réussie, rediriger l'utilisateur vers la page d'accueil ou autre page sécurisée
-//         window.location.href = "/" // Remplacer par la page de redirection après la connexion
-//       } else {
-//         throw new Error("Connexion échouée")
-//       }
-//     } catch (error) {
-//       // Afficher un message d'erreur si la connexion échoue
-//       document.getElementById("error-message").classList.remove("d-none")
-//     }
-//   })
+export function isConnected() {
+  if (getToken() == null || getToken == undefined) {
+    return false
+  } else {
+    return true
+  }
+}
+
+const RoleCookieName = "role"
+
+export function getRole() {
+  return getCookie(RoleCookieName)
+}

@@ -1,9 +1,7 @@
 import Route from "./Route.js"
 import { allRoutes, websiteName } from "./allRoutes.js"
 import { initMasonry } from "../utils/initMasonry.js"
-
-import { headerHTML } from "../components/header.js"
-import { footerHTML } from "../components/footer.js"
+import { afterPageLoad } from "../main.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html")
 
@@ -21,7 +19,12 @@ const pages = import.meta.glob("/pages/**/*.html", {
   query: "?raw",
   import: "default",
 })
-console.log("pages ->", pages)
+// console.log("pages ->", pages)
+
+const fragments = import.meta.glob("/fragments/*.html", {
+  query: "?raw",
+  import: "default",
+})
 
 // Charger le contenu complet (header + page + footer) dans #app
 const loadPageIntoApp = async () => {
@@ -30,6 +33,13 @@ const loadPageIntoApp = async () => {
 
   // Utilisation de glob pour récupérer la page demandée
   const pageLoader = pages[`${currentRoute.pathHtml}`]
+  const headerLoader = fragments["/fragments/header.html"]
+  const footerLoader = fragments["/fragments/footer.html"]
+
+  const [headerHTML, footerHTML] = await Promise.all([
+    headerLoader(),
+    footerLoader(),
+  ])
   const pageHTML = pageLoader ? await pageLoader() : "<h1>Page introuvable</h1>"
 
   const app = document.getElementById("app")
@@ -51,6 +61,8 @@ const loadPageIntoApp = async () => {
   }
 
   document.title = `${currentRoute.title} - ${websiteName}`
+
+  afterPageLoad()
 }
 
 // Gestion des clics sur les liens internes

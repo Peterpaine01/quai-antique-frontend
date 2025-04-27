@@ -29,7 +29,7 @@ const loadPageIntoApp = async () => {
   const currentRoute = getRouteByUrl(path)
 
   // Utilisation de glob pour récupérer la page demandée
-  const pageLoader = pages[`${currentRoute.pathHtml}`] // ex: '/home.html'
+  const pageLoader = pages[`${currentRoute.pathHtml}`]
   const pageHTML = pageLoader ? await pageLoader() : "<h1>Page introuvable</h1>"
 
   const app = document.getElementById("app")
@@ -42,7 +42,7 @@ const loadPageIntoApp = async () => {
   initMasonry()
   console.log(currentRoute)
 
-  // Chargement JS spécifique si nécessaire
+  // Chargement JS
   if (currentRoute.pathJS) {
     const script = document.createElement("script")
     script.type = "module" // Type module pour Vite

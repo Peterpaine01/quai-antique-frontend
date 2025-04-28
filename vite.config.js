@@ -20,4 +20,8 @@ export default defineConfig({
     open: true, // Ouvre automatiquement le navigateur au démarrage du serveur
     port: 3000, // Le port du serveur de développement
   },
+  plugins: [],
+  define: {
+    "process.env": process.env,
+  },
 })

@@ -79,7 +79,7 @@ function signupUser() {
   let raw = JSON.stringify({
     firstName: "Test fetch",
     lastName: "test fetch",
-    email: "testdepuisPostman@email.com",
+    email: "testdepuisFetch@email.com",
     password: "Azerty11",
   })
 

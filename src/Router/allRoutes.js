@@ -29,10 +29,10 @@ export const allRoutes = [
     ["ROLE_USER", "ROLE_ADMIN"]
   ),
   new Route("/carte", "La Carte", "/pages/menu.html", []),
-  new Route("/reservations", "Vos Réservations", "/pages/bookingsList.html", [
+  new Route("/reservations", "Mes Réservations", "/pages/bookingsList.html", [
     "ROLE_USER",
   ]),
-  new Route("/reserver", "Réserver", "/pages/bookingAdd.html", ["ROLE_USER"]),
+  new Route("/reserver", "Réserver", "/pages/bookingAdd.html", []),
 ]
 
 //Title is displayed such as : Route.title - websitename

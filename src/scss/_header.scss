@@ -2,7 +2,11 @@
 
 .navbar,
 .offcanvas {
-  z-index: 1055 !important; /* plus haut que la navbar Bootstrap par défaut */
+  z-index: 1055 !important;
+}
+
+.navbar {
+  height: 78px;
 }
 
 .navbar-toggler-icon {

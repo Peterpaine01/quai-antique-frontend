@@ -3,18 +3,23 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "./scss/main.scss"
 import "./Router/Router.js"
 
+const tokenCookieName = "accesstoken"
+const RoleCookieName = "role"
+
 export function afterPageLoad() {
   const btnSignout = document.getElementById("btn-signout")
-  if (btnSignout) {
+  const btnSignoutMobile = document.getElementById("btn-signout-mobile")
+  if (btnSignout || btnSignoutMobile) {
     btnSignout.addEventListener("click", (e) => {
+      e.preventDefault()
+      signout()
+    })
+    btnSignoutMobile.addEventListener("click", (e) => {
       e.preventDefault()
       signout()
     })
   }
 }
-
-const tokenCookieName = "accesstoken"
-const RoleCookieName = "role"
 
 function signout() {
   eraseCookie(tokenCookieName)
@@ -111,4 +116,33 @@ export function showAndHideElementsForRoles() {
         break
     }
   })
+}
+
+export function getInfosUser() {
+  let myHeaders = new Headers()
+  myHeaders.append("X-AUTH-TOKEN", getToken())
+
+  let requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  }
+
+  fetch(`${import.meta.env.VITE_API_URL}/api/account/me`, requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        console.log("Impossible de récupérer les informations utilisateur")
+      }
+    })
+    .then((result) => {
+      return result
+    })
+    .catch((error) => {
+      console.error(
+        "erreur lors de la récupération des données utilisateur",
+        error
+      )
+    })
 }

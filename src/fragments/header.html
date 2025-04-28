@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Quai Antique</a>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler rounded-circle"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -30,17 +30,32 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
-          <li class="nav-item" data-show="connected">
-            <a class="nav-link" href="/compte">Mon compte</a>
-          </li>
-          <li class="nav-item" data-show="connected">
-            <a class="nav-link" href="/reservations">Mes réservations</a>
-          </li>
           <li class="nav-item" data-show="disconnected">
             <a class="nav-link" href="/connexion">Se connecter</a>
+          </li
+        </ul>
+      </div>
+      <div class="dropdown" data-show="connected">
+        <button
+          class="btn btn-link text-white"
+          type="button"
+          id="userMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-person-circle fs-2"></i>
+          <!-- Icône utilisateur -->
+        </button>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="userMenuButton"
+        >
+          <li><a class="dropdown-item" href="/compte">Mon compte</a></li>
+          <li>
+            <a class="dropdown-item" href="/reservations">Mes réservations</a>
           </li>
-          <li class="nav-item" data-show="connected">
-            <a class="nav-link" href="" id="btn-signout">Se déconnecter</a>
+          <li>
+            <a class="dropdown-item" href="" id="btn-signout">Se déconnecter</a>
           </li>
         </ul>
       </div>
@@ -50,34 +65,51 @@
 
 <nav class="navbar bg-dark fixed-top d-md-none">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Quai Antique</a>
     <button
-      class="navbar-toggler rounded-circle d-flex justify-content-center align-items-center"
-      style="height: 50px; width: 50px"
+      class="btn rounded-circle btn-link text-white"
+            style="width: 58px; height: 58px; "
       type="button"
       data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasNavbar"
-      aria-controls="offcanvasNavbar"
-      aria-label="Toggle navigation"
+      data-bs-target="#offcanvasUser"
+      aria-controls="offcanvasUser"
+      
     >
-      <span class="navbar-toggler-icon text-white"></span>
+      <i class="bi bi-person-circle" style="font-size: 32px; "></i>
     </button>
 
-    <div
-      class="offcanvas offcanvas-end text-bg-dark"
-      tabindex="-1"
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-    >
+    <!-- Offcanvas gauche -->
+    <div class="offcanvas offcanvas-start text-bg-dark" id="offcanvasUser" tabindex="-1" aria-labelledby="offcanvasUserLabel" >
       <div class="offcanvas-header">
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+        <i class="bi bi-person-circle" style="font-size: 32px; "></i>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
       </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li><a class="nav-link text-white" data-show="connected" href="/compte">Mon compte</a></li>
+          <li><a class="nav-link text-white" data-show="connected" href="/reservations">Mes réservations</a></li>
+          <li><a class="nav-link text-white" data-show="connected" href="" id="btn-signout-mobile">Se déconnecter</a></li>
+          <li></li><a class="nav-link text-white" data-show="disconnected" href="/connexion">Se connecter</a></li>
+          <li></li><a class="nav-link text-white" data-show="disconnected" href="/inscription">S'inscrire</a></li>
+        </ul>
+      </div>
+    </div>
+        <a class="navbar-brand text-white" href="#">Quai Antique</a>
+        <button
+      class="btn  rounded-circle d-flex justify-content-center align-items-center"
+          style="width: 55px; height: 55px;"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasMenu"
+      aria-controls="offcanvasMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <!-- Offcanvas droite -->
+    <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasMenu" tabindex="-1" aria-labelledby="offcanvasMenuLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close btn-close-white rounded-circle" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+      </div>
       <div class="offcanvas-body d-flex flex-column justify-content-between">
         <!-- Navigation -->
         <ul class="navbar-nav gap-3">
@@ -85,7 +117,7 @@
             <a class="nav-link text-white" href="/">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="/carte">À la carte</a>
+            <a class="nav-link text-white" href="/carte">La Carte</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="/reserver">Réserver</a>

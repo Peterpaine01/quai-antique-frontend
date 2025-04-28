@@ -6,6 +6,7 @@ import {
   showAndHideElementsForRoles,
   getRole,
   isConnected,
+  getInfosUser,
 } from "../main.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html", [])
@@ -81,7 +82,6 @@ const loadPageIntoApp = async () => {
   `
 
   initMasonry()
-  console.log(currentRoute)
 
   // Chargement JS
   if (currentRoute.pathJS) {
@@ -94,6 +94,7 @@ const loadPageIntoApp = async () => {
   document.title = `${currentRoute.title} - ${websiteName}`
   showAndHideElementsForRoles()
   afterPageLoad()
+  getInfosUser()
 }
 
 // Gestion des clics sur les liens internes

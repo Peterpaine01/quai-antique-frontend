@@ -2,9 +2,9 @@ import { setToken, setCookie } from "../../main"
 
 const inputMail = document.getElementById("email")
 const inputPassword = document.getElementById("password")
-const btnSingin = document.getElementById("btnSignin")
+const btnSignin = document.getElementById("btnSignin")
 
-btnSingin.addEventListener("click", checkCredentials)
+btnSignin.addEventListener("click", checkCredentials)
 
 const RoleCookieName = "role"
 
@@ -38,7 +38,7 @@ function checkCredentials() {
     .then((result) => {
       console.log(result)
 
-      const token = result.token
+      const token = result.apiToken
       setToken(token)
 
       setCookie(RoleCookieName, result.roles[0], 7)

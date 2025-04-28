@@ -146,3 +146,9 @@ export function getInfosUser() {
       )
     })
 }
+
+export function sanitizeHTML(string) {
+  const temp = document.createElement("div")
+  temp.textContent = string
+  return temp.textContent
+}

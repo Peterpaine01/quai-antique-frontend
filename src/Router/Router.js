@@ -7,6 +7,7 @@ import {
   getRole,
   isConnected,
   getInfosUser,
+  sanitizeHTML,
 } from "../main.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html", [])

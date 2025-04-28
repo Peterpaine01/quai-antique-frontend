@@ -1,9 +1,14 @@
 import Route from "./Route.js"
 import { allRoutes, websiteName } from "./allRoutes.js"
 import { initMasonry } from "../utils/initMasonry.js"
-import { afterPageLoad, showAndHideElementsForRoles } from "../main.js"
+import {
+  afterPageLoad,
+  showAndHideElementsForRoles,
+  getRole,
+  isConnected,
+} from "../main.js"
 
-const route404 = new Route("404", "Page introuvable", "/pages/404.html")
+const route404 = new Route("404", "Page introuvable", "/pages/404.html", [])
 
 // Trouver la route correspondant à l'URL
 const getRouteByUrl = (url) => {
@@ -30,6 +35,22 @@ const fragments = import.meta.glob("/fragments/*.html", {
 const loadPageIntoApp = async () => {
   const path = window.location.pathname
   const currentRoute = getRouteByUrl(path)
+
+  //Vérifier les droits d'accès à la page
+  const allRolesArray = currentRoute.authorize
+
+  if (allRolesArray.length > 0) {
+    if (allRolesArray.includes("disconnected")) {
+      if (isConnected()) {
+        window.location.replace("/")
+      }
+    } else {
+      const roleUser = getRole()
+      if (!allRolesArray.includes(roleUser)) {
+        window.location.replace("/")
+      }
+    }
+  }
 
   // Utilisation de glob pour récupérer la page demandée
   const pageLoader = pages[`${currentRoute.pathHtml}`]

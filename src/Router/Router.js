@@ -36,18 +36,28 @@ const loadPageIntoApp = async () => {
   const path = window.location.pathname
   const currentRoute = getRouteByUrl(path)
 
-  //Vérifier les droits d'accès à la page
-  const allRolesArray = currentRoute.authorize
+  if (!currentRoute) {
+    window.location.replace("/")
+    return
+  }
 
-  if (allRolesArray.length > 0) {
-    if (allRolesArray.includes("disconnected")) {
+  const authorizedRoles = currentRoute.authorize || []
+
+  if (authorizedRoles.length > 0) {
+    if (authorizedRoles.includes("disconnected")) {
       if (isConnected()) {
         window.location.replace("/")
+        return
       }
     } else {
-      const roleUser = getRole()
-      if (!allRolesArray.includes(roleUser)) {
+      if (!isConnected()) {
         window.location.replace("/")
+        return
+      }
+      const userRole = getRole()
+      if (!authorizedRoles.includes(userRole)) {
+        window.location.replace("/")
+        return
       }
     }
   }

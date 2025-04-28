@@ -9,18 +9,40 @@ btnSingin.addEventListener("click", checkCredentials)
 const RoleCookieName = "role"
 
 function checkCredentials() {
-  //Ici, il faudra appeler l'API pour vérifier les credentials en BDD
+  let dataForm = new FormData(signinForm)
 
-  if (inputMail.value == "test@mail.com" && inputPassword.value == "123") {
-    //Il faudra récupérer le vrai token
-    const token = "lkjsdngfljsqdnglkjsdbglkjqskjgkfjgbqslkfdgbskldfgdfgsdgf"
-    setToken(token)
-    //placer ce token en cookie
+  let myHeaders = new Headers()
+  myHeaders.append("Content-Type", "application/json")
 
-    setCookie(RoleCookieName, "admin", 7)
-    window.location.replace("/")
-  } else {
-    inputMail.classList.add("is-invalid")
-    inputPassword.classList.add("is-invalid")
+  let raw = JSON.stringify({
+    email: dataForm.get("email"),
+    password: dataForm.get("password"),
+  })
+
+  let requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
   }
+
+  fetch(`${import.meta.env.VITE_API_URL}/api/login`, requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        inputMail.classList.add("is-invalid")
+        inputPassword.classList.add("is-invalid")
+      }
+    })
+    .then((result) => {
+      console.log(result)
+
+      const token = result.token
+      setToken(token)
+
+      setCookie(RoleCookieName, result.roles[0], 7)
+      window.location.replace("/")
+    })
+    .catch((error) => console.log("error", error))
 }

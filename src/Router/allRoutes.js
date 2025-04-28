@@ -19,20 +19,20 @@ export const allRoutes = [
     "/js/auth/signup.js"
   ),
   new Route("/compte", "Mon Compte", "/pages/auth/account.html", [
-    "client",
-    "admin",
+    "ROLE_USER",
+    "ROLE_ADMIN",
   ]),
   new Route(
-    "/editPassword",
+    "/password",
     "Changer de mot de passe",
     "/pages/auth/editPassword.html",
-    ["client", "admin"]
+    ["ROLE_USER", "ROLE_ADMIN"]
   ),
   new Route("/carte", "La Carte", "/pages/menu.html", []),
   new Route("/reservations", "Vos Réservations", "/pages/bookingsList.html", [
-    "client",
+    "ROLE_USER",
   ]),
-  new Route("/reserver", "Réserver", "/pages/bookingAdd.html", ["client"]),
+  new Route("/reserver", "Réserver", "/pages/bookingAdd.html", ["ROLE_USER"]),
 ]
 
 //Title is displayed such as : Route.title - websitename

@@ -20,6 +20,7 @@ function signout() {
   eraseCookie(tokenCookieName)
   eraseCookie(RoleCookieName)
   window.location.reload()
+  window.location.replace("/connexion")
 }
 
 export function setCookie(name, value, days) {
@@ -99,12 +100,12 @@ export function showAndHideElementsForRoles() {
         }
         break
       case "admin":
-        if (!userConnected || role != "admin") {
+        if (!userConnected || role != "ROLE_ADMIN") {
           element.classList.add("d-none")
         }
         break
       case "client":
-        if (!userConnected || role != "client") {
+        if (!userConnected || role != "ROLE_USER") {
           element.classList.add("d-none")
         }
         break

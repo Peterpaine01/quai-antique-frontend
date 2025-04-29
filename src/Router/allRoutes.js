@@ -29,9 +29,13 @@ export const allRoutes = [
     ["ROLE_USER", "ROLE_ADMIN"]
   ),
   new Route("/carte", "La Carte", "/pages/menu.html", []),
-  new Route("/reservations", "Mes Réservations", "/pages/bookingsList.html", [
-    "ROLE_USER",
-  ]),
+  new Route(
+    "/reservations",
+    "Mes Réservations",
+    "/pages/bookingsList.html",
+    ["ROLE_USER"],
+    "/js/booking.js"
+  ),
   new Route("/reserver", "Réserver", "/pages/bookingAdd.html", []),
 ]
 

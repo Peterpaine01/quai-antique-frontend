@@ -6,9 +6,9 @@ import {
   showAndHideElementsForRoles,
   getRole,
   isConnected,
-  getInfosUser,
   sanitizeHTML,
 } from "../main.js"
+import { afterPageBookingLoad } from "../js/booking.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html", [])
 
@@ -95,7 +95,7 @@ const loadPageIntoApp = async () => {
   document.title = `${currentRoute.title} - ${websiteName}`
   showAndHideElementsForRoles()
   afterPageLoad()
-  getInfosUser()
+  afterPageBookingLoad()
 }
 
 // Gestion des clics sur les liens internes

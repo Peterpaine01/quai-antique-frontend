@@ -5,10 +5,13 @@ import "./Router/Router.js"
 
 const tokenCookieName = "accesstoken"
 const RoleCookieName = "role"
+const errorMessage = document.getElementById("error-message")
+const successMessage = document.getElementById("success-message")
 
 export function afterPageLoad() {
   const btnSignout = document.getElementById("btn-signout")
   const btnSignoutMobile = document.getElementById("btn-signout-mobile")
+
   if (btnSignout || btnSignoutMobile) {
     btnSignout.addEventListener("click", (e) => {
       e.preventDefault()
@@ -19,6 +22,13 @@ export function afterPageLoad() {
       signout()
     })
   }
+}
+
+function hideMessages() {
+  errorMessage.style.display = "none"
+  successMessage.style.display = "none"
+  errorMessage.innerText = ""
+  successMessage.innerText = ""
 }
 
 function signout() {
@@ -118,7 +128,7 @@ export function showAndHideElementsForRoles() {
   })
 }
 
-export function getInfosUser() {
+export async function getInfosUser() {
   let myHeaders = new Headers()
   myHeaders.append("X-AUTH-TOKEN", getToken())
 
@@ -128,22 +138,21 @@ export function getInfosUser() {
     redirect: "follow",
   }
 
-  fetch(`${import.meta.env.VITE_API_URL}/api/account/me`, requestOptions)
+  return fetch(`${import.meta.env.VITE_API_URL}/api/account/me`, requestOptions)
     .then((response) => {
       if (response.ok) {
         return response.json()
       } else {
         console.log("Impossible de récupérer les informations utilisateur")
+        return null
       }
-    })
-    .then((result) => {
-      return result
     })
     .catch((error) => {
       console.error(
-        "erreur lors de la récupération des données utilisateur",
+        "Erreur lors de la récupération des données utilisateur",
         error
       )
+      return null
     })
 }
 

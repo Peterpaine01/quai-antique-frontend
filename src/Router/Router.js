@@ -9,6 +9,7 @@ import {
   sanitizeHTML,
 } from "../main.js"
 import { afterPageBookingLoad } from "../js/booking.js"
+import { afterPageBookingListLoad } from "../js/bookingListing.js"
 
 const route404 = new Route("404", "Page introuvable", "/pages/404.html", [])
 
@@ -96,6 +97,7 @@ const loadPageIntoApp = async () => {
   showAndHideElementsForRoles()
   afterPageLoad()
   afterPageBookingLoad()
+  afterPageBookingListLoad()
 }
 
 // Gestion des clics sur les liens internes

@@ -34,9 +34,15 @@ export const allRoutes = [
     "Mes Réservations",
     "/pages/bookingsList.html",
     ["ROLE_USER"],
+    "/js/bookingListing.js"
+  ),
+  new Route(
+    "/reserver",
+    "Réserver",
+    "/pages/bookingAdd.html",
+    [],
     "/js/booking.js"
   ),
-  new Route("/reserver", "Réserver", "/pages/bookingAdd.html", []),
 ]
 
 //Title is displayed such as : Route.title - websitename

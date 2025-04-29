@@ -1,12 +1,4 @@
-import {
-  afterPageLoad,
-  showAndHideElementsForRoles,
-  getRole,
-  isConnected,
-  getInfosUser,
-  sanitizeHTML,
-  getToken,
-} from "../main.js"
+import { getInfosUser, sanitizeHTML, getToken } from "../main.js"
 
 export async function afterPageBookingLoad() {
   const btnBooking = document.getElementById("btn-booking")

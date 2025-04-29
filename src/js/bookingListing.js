@@ -20,7 +20,7 @@ export async function afterPageBookingListLoad() {
       const card = createBookingCard(booking)
 
       const col = document.createElement("div")
-      col.className = "col-12 col-md-4 col-lg-3"
+      col.className = "col-12 col-md-6 col-lg-4"
       col.appendChild(card)
       container.appendChild(col)
     })

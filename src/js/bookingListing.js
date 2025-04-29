@@ -56,7 +56,7 @@ export async function afterPageBookingListLoad() {
     const hasAllergies = bookings.allergy !== "" ? true : false
 
     card.innerHTML = `
-      <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+      <div class="card-header bg-secondary text-black d-flex justify-content-between align-items-center">
         <strong>${user.lastName}</strong>
         <i class="bi bi-check-circle-fill"></i>
       </div>

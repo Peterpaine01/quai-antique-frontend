@@ -123,9 +123,6 @@ export async function afterPageBookingLoad() {
       orderHour,
       restaurantId: 1,
     }
-
-    console.log("bookingData", bookingData)
-
     const requestOptions = {
       method: "POST",
       headers: {
@@ -136,7 +133,7 @@ export async function afterPageBookingLoad() {
     }
 
     fetch(`${import.meta.env.VITE_API_URL}/api/booking/create`, requestOptions)
-      .then(function (response) {
+      .then(async function (response) {
         return response.json().then(function (data) {
           if (response.ok) {
             successMessage.innerText =
@@ -163,11 +160,6 @@ export async function afterPageBookingLoad() {
   }
 
   async function loadHours(service) {
-    // Simuler un appel async : tu pourrais faire un fetch ici à ton API
-    // Exemple :
-    // const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hours?service=${service}`);
-    // const data = await response.json();
-
     let hours = []
 
     if (service === "midi") {

@@ -17,11 +17,6 @@ inputPassword.addEventListener("keyup", validateForm)
 inputValidationPassword.addEventListener("keyup", validateForm)
 btnValidation.addEventListener("click", signupUser)
 
-function handleInputChange() {
-  validateForm()
-  hideMessages()
-}
-
 function validateForm() {
   validateRequired(inputNom)
   validateRequired(inputPreNom)
